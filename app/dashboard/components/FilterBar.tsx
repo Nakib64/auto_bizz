@@ -76,6 +76,11 @@ export function FilterBar() {
                         onChange={(e) => handleSearch(e.target.value, "email")}
                         defaultValue={searchParams.get("email")?.toString()}
                     />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="email" className="text-xs font-medium text-muted-foreground flex items-center gap-1">
+                        <Phone className="w-3 h-3" /> Phone
+                    </Label>
                     <Input
                         id="phone"
                         type="tel"
@@ -86,6 +91,8 @@ export function FilterBar() {
                     />
                 </div>
             </div>
-        </Card>
+
+
+        </Card >
     )
 }

@@ -5,8 +5,8 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { motion } from "framer-motion"
 
 interface SalesData {
-    date: string
-    amount: number
+    day: string
+    totalSale: number
 }
 
 interface SalesChartProps {
@@ -63,7 +63,7 @@ export function SalesChart({ data, loading }: SalesChartProps) {
                                 </defs>
                                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
                                 <XAxis
-                                    dataKey="date"
+                                    dataKey="day"
                                     stroke="#64748b"
                                     fontSize={12}
                                     tickLine={false}
@@ -79,7 +79,7 @@ export function SalesChart({ data, loading }: SalesChartProps) {
                                 <Tooltip content={<CustomTooltip />} />
                                 <Area
                                     type="monotone"
-                                    dataKey="amount"
+                                    dataKey="totalSale"
                                     stroke="#3b82f6"
                                     strokeWidth={3}
                                     fillOpacity={1}

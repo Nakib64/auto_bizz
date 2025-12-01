@@ -10,8 +10,9 @@ interface SalesResponse {
     totalSales?: any[]
 }
 
-const fetchSales = async (searchParams: URLSearchParams): Promise<SalesResponse> => {
-    const response = await fetch(`/api/sales?${searchParams.toString()}`)
+const fetchSales = async (queryString: string): Promise<SalesResponse> => {
+    console.log(queryString)
+    const response = await fetch(`/api/sales?${queryString}`)
     if (!response.ok) {
         throw new Error("Network response was not ok")
     }
@@ -20,11 +21,12 @@ const fetchSales = async (searchParams: URLSearchParams): Promise<SalesResponse>
 
 export function useSales() {
     const searchParams = useSearchParams()
+    const queryString = searchParams.toString()
 
     return useQuery({
-        queryKey: ["sales", searchParams.toString()],
-        queryFn: () => fetchSales(searchParams),
-        staleTime: 60 * 1000, // 1 minute
+        queryKey: ["sales", queryString],
+        queryFn: () => fetchSales(queryString),
+        staleTime: 60 * 1000,
         placeholderData: (previousData) => previousData,
     })
 }

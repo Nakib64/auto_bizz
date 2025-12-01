@@ -8,8 +8,7 @@ export async function getAuthToken(): Promise<string> {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                email: "issa@autobizz.net",
-                name: "Issa",
+                "tokenType": "frontEndTest"
             }),
         })
 
@@ -18,6 +17,7 @@ export async function getAuthToken(): Promise<string> {
         }
 
         const data = await response.json()
+        console.log(data)   
         return data.token
     } catch (error) {
         console.error("Auth Error:", error)

@@ -5,7 +5,6 @@ import { SalesChart } from "./components/SalesChart"
 import { SalesTable } from "./components/SalesTable"
 import { PaginationControls } from "./components/PaginationControls"
 import { useSales } from "@/hooks/useSales"
-import { motion } from "framer-motion"
 import { Suspense } from "react"
 
 function DashboardContent() {
@@ -31,7 +30,7 @@ function DashboardContent() {
             <FilterBar />
 
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-                <SalesChart data={data?.data || []} loading={isLoading} />
+                <SalesChart data={data?.totalSales || []} loading={isLoading} />
             </div>
 
             <div className="space-y-4">

@@ -33,34 +33,38 @@ export function PaginationControls({ cursors, isLoading }: PaginationControlsPro
 
     return (
         <div className="flex items-center justify-end space-x-2 py-4">
-            <Button
-                variant="outline"
-                size="sm"
-                onClick={() => handlePageChange("before")}
-                disabled={!cursors.before || isLoading}
-                className="bg-white/70 backdrop-blur-md shadow-sm hover:bg-white/90 transition-all"
-            >
-                {isLoading && !cursors.after ? ( // Heuristic: loading previous page
-                    <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                ) : (
-                    <ChevronLeft className="h-4 w-4 mr-2" />
-                )}
-                Previous
-            </Button>
-            <Button
-                variant="outline"
-                size="sm"
-                onClick={() => handlePageChange("after")}
-                disabled={!cursors.after || isLoading}
-                className="bg-white/70 backdrop-blur-md shadow-sm hover:bg-white/90 transition-all"
-            >
-                Next
-                {isLoading && !cursors.before ? ( // Heuristic: loading next page
-                    <Loader2 className="h-4 w-4 animate-spin ml-2" />
-                ) : (
-                    <ChevronRight className="h-4 w-4 ml-2" />
-                )}
-            </Button>
+            {cursors.before && cursors.before !== "" && (
+                <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handlePageChange("before")}
+                    disabled={isLoading}
+                    className="bg-white/70 backdrop-blur-md shadow-sm hover:bg-white/90 transition-all"
+                >
+                    {isLoading ? (
+                        <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                    ) : (
+                        <ChevronLeft className="h-4 w-4 mr-2" />
+                    )}
+                    Previous
+                </Button>
+            )}
+            {cursors.after && cursors.after !== "" && (
+                <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handlePageChange("after")}
+                    disabled={isLoading}
+                    className="bg-white/70 backdrop-blur-md shadow-sm hover:bg-white/90 transition-all"
+                >
+                    Next
+                    {isLoading ? (
+                        <Loader2 className="h-4 w-4 animate-spin ml-2" />
+                    ) : (
+                        <ChevronRight className="h-4 w-4 ml-2" />
+                    )}
+                </Button>
+            )}
         </div>
     )
 }
